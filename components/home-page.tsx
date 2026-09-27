@@ -1,3 +1,310 @@
 'use client';
-import Link from 'next/link';import { ArrowRight, MapPin, Phone, Clock3, Camera, Mail, Star } from 'lucide-react';import { categories,offers,products } from '@/lib/data';import { ProductCard } from './product-card';import Hero from './hero';import { Logo,MobileNav,SiteHeader } from './site-header';
-export function HomePage(){const popular=products.filter(p=>p.popular).slice(0,4);return <main><SiteHeader/><Hero/><section className="marquee"><div>AUTHENTIC PAKISTANI CUISINE <span>✦</span> ROYAL DEGH SPECIALISTS <span>✦</span> CHARCOAL BBQ <span>✦</span> FAMILY TABLES <span>✦</span> RAWALPINDI <span>✦</span> AUTHENTIC PAKISTANI CUISINE <span>✦</span></div></section><section className="section categories-section"><div className="section-heading"><div><span className="eyebrow">FROM THE ROYAL KITCHEN</span><h2>Choose your table mood.</h2></div><Link href="/menu">View full menu <ArrowRight/></Link></div><div className="category-grid">{categories.map(c=><Link key={c.id} href={`/menu?category=${c.id}`} className="category-card"><span className="category-number">0{categories.indexOf(c)+1}</span><div className="category-icon">{c.icon}</div><h3>{c.name}</h3><p>{c.note}</p><ArrowRight/></Link>)}</div></section><section className="story-section" id="story"><div className="story-image"><img src={products[1].image} alt="Royal Degh family meal"/><div className="story-stamp">ROYAL<br/><span>DEGH</span><small>RAWALPINDI</small></div></div><div className="story-copy"><span className="eyebrow">A TABLE WORTH GATHERING AROUND</span><h2>Old recipes.<br/><em>Royal appetite.</em></h2><p>At The Royal Degh, food is designed to arrive at the centre of the table. Our menu brings together generous deghs, sizzling karahi, fragrant basmati and charcoal grills — the kind of food that makes people stay a little longer.</p><p>Every order is prepared around the moment it is served, with familiar Pakistani ingredients and a modern, polished dining experience.</p><Link className="outline-button" href="/menu">See our menu <ArrowRight/></Link></div></section><section className="signature-section"><div className="section-heading"><div><span className="eyebrow">THE ROYAL EDIT</span><h2>Signature dishes.</h2></div><Link href="/menu">Explore everything <ArrowRight/></Link></div><div className="dish-grid">{popular.map(p=><ProductCard key={p.id} product={p} compact/>)}</div></section><section className="offer-section" id="offers"><div className="offer-intro"><span className="eyebrow">ROYAL TABLE OFFERS</span><h2>Make room<br/><em>for more.</em></h2><p>Selected offers for family meals and memorable evenings at home.</p></div><div className="offer-grid">{offers.map((o,i)=><div className="offer-card" key={o.code}><span>0{i+1} / {o.label}</span><strong>{o.title}</strong><p>{o.sub}</p><code>{o.code}</code></div>)}</div></section><section className="visit-section" id="visit"><div className="visit-map"><div className="map-grid"/><div className="map-pin"><MapPin/></div><span>THE ROYAL DEGH<br/><b>CHAKKRI ROAD · LINE 7</b></span></div><div className="visit-copy"><span className="eyebrow">COME TO THE TABLE</span><h2>Find us in<br/><em>Rawalpindi.</em></h2><div className="visit-details"><div><MapPin/><span>Chakkri Road, Line No. 7<br/>Rawalpindi, Pakistan</span></div><div><Clock3/><span>Open daily<br/>Lunch · Dinner</span></div><div><Mail/><span>theroyaldegofficialmela@theroyaldeg.pk</span></div></div><a className="gold-button" href="mailto:theroyaldegofficialmela@theroyaldeg.pk">Contact The Royal Degh <ArrowRight/></a></div></section><footer className="footer"><div className="footer-brand"><Logo/><p>A modern Pakistani dining house built around generous food, warm hospitality and the royal degh.</p><div className="socials"><a href="mailto:theroyaldegofficialmela@theroyaldeg.pk" aria-label="Email"><Mail/></a><a href="#visit" aria-label="Location"><MapPin/></a><a href="#story" aria-label="Story"><Star/></a></div></div><div><b>Explore</b><Link href="/menu">Menu</Link><Link href="/#story">Our Story</Link><Link href="/#offers">Offers</Link><Link href="/cart">Your Order</Link></div><div><b>Visit</b><span>Chakkri Road, Line 7</span><span>Rawalpindi, Pakistan</span><span>Lunch · Dinner</span></div><div><b>Contact</b><a href="mailto:theroyaldegofficialmela@theroyaldeg.pk">theroyaldegofficialmela@theroyaldeg.pk</a><a href="#visit">Get directions ↗</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} The Royal Degh. All rights reserved.</span><span>Crafted for the royal table.</span></div></footer><MobileNav/></main>}
+
+import Link from 'next/link';
+import {
+  ArrowRight,
+  MapPin,
+  Phone,
+  Clock3,
+  Camera,
+  Mail,
+  Star,
+} from 'lucide-react';
+
+import { categories, offers, products } from '@/lib/data';
+import { ProductCard } from './product-card';
+import Hero from './hero';
+import { Logo, MobileNav, SiteHeader } from './site-header';
+
+export function HomePage() {
+  const popular = products.filter((p) => p.popular).slice(0, 4);
+
+  return (
+    <main>
+      <SiteHeader />
+
+      <Hero />
+
+      <section className="marquee">
+        <div>
+          AUTHENTIC PAKISTANI CUISINE <span>✦</span> ROYAL DEGH SPECIALISTS{' '}
+          <span>✦</span> CHARCOAL BBQ <span>✦</span> FAMILY TABLES{' '}
+          <span>✦</span> RAWALPINDI <span>✦</span> AUTHENTIC PAKISTANI CUISINE
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="section categories-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">FROM THE ROYAL KITCHEN</span>
+            <h2>Choose your table mood.</h2>
+          </div>
+
+          <Link href="/menu">
+            View full menu <ArrowRight />
+          </Link>
+        </div>
+
+        <div className="category-grid">
+          {categories.map((c) => (
+            <Link
+              key={c.id}
+              href={`/menu?category=${c.id}`}
+              className="category-card"
+            >
+              <span className="category-number">
+                0{categories.indexOf(c) + 1}
+              </span>
+
+              <div className="category-icon">{c.icon}</div>
+
+              <h3>{c.name}</h3>
+
+              <p>{c.note}</p>
+
+              <ArrowRight />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="story-section" id="story">
+        <div className="story-image">
+          <img
+            src={products[1].image}
+            alt="Royal Degh family meal"
+          />
+
+          <div className="story-stamp">
+            ROYAL
+            <br />
+            <span>DEGH</span>
+            <small>RAWALPINDI</small>
+          </div>
+        </div>
+
+        <div className="story-copy">
+          <span className="eyebrow">
+            A TABLE WORTH GATHERING AROUND
+          </span>
+
+          <h2>
+            Old recipes.
+            <br />
+            <em>Royal appetite.</em>
+          </h2>
+
+          <p>
+            At The Royal Degh, food is designed to arrive at the centre of
+            the table. Our menu brings together generous deghs, sizzling
+            karahi, fragrant basmati and charcoal grills — the kind of food
+            that makes people stay a little longer.
+          </p>
+
+          <p>
+            Every order is prepared around the moment it is served, with
+            familiar Pakistani ingredients and a modern, polished dining
+            experience.
+          </p>
+
+          <Link className="outline-button" href="/menu">
+            See our menu <ArrowRight />
+          </Link>
+        </div>
+      </section>
+
+      {/* Signature Dishes */}
+      <section className="signature-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">THE ROYAL EDIT</span>
+            <h2>Signature dishes.</h2>
+          </div>
+
+          <Link href="/menu">
+            Explore everything <ArrowRight />
+          </Link>
+        </div>
+
+        <div className="dish-grid">
+          {popular.map((p) => (
+            <ProductCard
+              key={p.id}
+              product={p}
+              compact
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Offers */}
+      <section className="offer-section" id="offers">
+        <div className="offer-intro">
+          <span className="eyebrow">ROYAL TABLE OFFERS</span>
+
+          <h2>
+            Make room
+            <br />
+            <em>for more.</em>
+          </h2>
+
+          <p>
+            Selected offers for family meals and memorable evenings at home.
+          </p>
+        </div>
+
+        <div className="offer-grid">
+          {offers.map((o, i) => (
+            <div className="offer-card" key={o.code}>
+              <span>
+                0{i + 1} / {o.label}
+              </span>
+
+              <strong>{o.title}</strong>
+
+              <p>{o.sub}</p>
+
+              <code>{o.code}</code>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Visit / Google Map */}
+      <section className="visit-section" id="visit">
+        <div className="visit-map">
+          <iframe
+            title="The Royal Degh - Chakkri Road Rawalpindi"
+            src="https://www.google.com/maps?q=Chakkri+Road,+Rawalpindi,+Pakistan&output=embed"
+            width="100%"
+            height="100%"
+            style={{
+              border: 0,
+              minHeight: '420px',
+            }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="visit-copy">
+          <span className="eyebrow">COME TO THE TABLE</span>
+
+          <h2>
+            Find us in
+            <br />
+            <em>Rawalpindi.</em>
+          </h2>
+
+          <div className="visit-details">
+            <div>
+              <MapPin />
+
+              <span>
+                Chakkri Road, Line No. 7
+                <br />
+                Rawalpindi, Pakistan
+              </span>
+            </div>
+
+            <div>
+              <Clock3 />
+
+              <span>
+                Open daily
+                <br />
+                Lunch · Dinner
+              </span>
+            </div>
+
+            <div>
+              <Mail />
+
+              <span>
+                theroyaldegofficialmela@theroyaldeg.pk
+              </span>
+            </div>
+          </div>
+
+          <a
+            className="gold-button"
+            href="mailto:theroyaldegofficialmela@theroyaldeg.pk"
+          >
+            Contact The Royal Degh <ArrowRight />
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-brand">
+          <Logo />
+
+          <p>
+            A modern Pakistani dining house built around generous food,
+            warm hospitality and the royal degh.
+          </p>
+
+          <div className="socials">
+            <a
+              href="mailto:theroyaldegofficialmela@theroyaldeg.pk"
+              aria-label="Email"
+            >
+              <Mail />
+            </a>
+
+            <a href="#visit" aria-label="Location">
+              <MapPin />
+            </a>
+
+            <a href="#story" aria-label="Story">
+              <Star />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <b>Explore</b>
+
+          <Link href="/menu">Menu</Link>
+          <Link href="/#story">Our Story</Link>
+          <Link href="/#offers">Offers</Link>
+          <Link href="/cart">Your Order</Link>
+        </div>
+
+        <div>
+          <b>Visit</b>
+
+          <span>Chakkri Road, Line 7</span>
+          <span>Rawalpindi, Pakistan</span>
+          <span>Lunch · Dinner</span>
+        </div>
+
+        <div>
+          <b>Contact</b>
+
+          <a href="mailto:theroyaldegofficialmela@theroyaldeg.pk">
+            theroyaldegofficialmela@theroyaldeg.pk
+          </a>
+
+          <a href="#visit">
+            Get directions ↗
+          </a>
+        </div>
+
+        <div className="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} The Royal Degh. All rights reserved.
+          </span>
+
+          <span>Crafted for the royal table.</span>
+        </div>
+      </footer>
+
+      <MobileNav />
+    </main>
+  );
+}
