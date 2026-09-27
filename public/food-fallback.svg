@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1a2020"/><stop offset="1" stop-color="#303938"/></linearGradient></defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <circle cx="930" cy="150" r="250" fill="#ff6947" opacity=".12"/>
+  <path d="M250 565c30-170 670-170 700 0-55 90-645 90-700 0Z" fill="#f0ede4" opacity=".92"/>
+  <path d="M285 500c90-90 540-90 630 0l-28 60H313Z" fill="#ff6947"/>
+  <path d="M340 455c60-110 460-110 520 0l-28 45H368Z" fill="#d9a15f"/>
+  <text x="600" y="750" fill="#f0ede4" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" letter-spacing="8">KAPPAFOOD</text>
+</svg>
