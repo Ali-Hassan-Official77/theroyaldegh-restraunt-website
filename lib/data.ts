@@ -6,6 +6,7 @@ export type Category = {
   note: string;
 };
 
+export const runtime = 'edge';
 export type Product = {
   id: string;
   slug: string;
